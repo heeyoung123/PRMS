@@ -1,7 +1,17 @@
 .container {
   text-align: center;
+  max-width: 100%;
+  padding: 20px;
+  background-color: #282c34;
+  color: white;
 }
-
+.board{
+  background-color: aliceblue;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  color: black;
+  padding: 10px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

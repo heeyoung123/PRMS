@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import TodoModal from "./TodoModal";
 
 type Todo ={
 	id: number;
@@ -55,7 +56,9 @@ type Todo ={
 						</li>
 					))}
 				</ul>
+				<TodoModal show={showDetail} todo={selectedTodo} handleClose={handleCloseDetail}></TodoModal>
 			</div>
+
 		</div>
 	);
 }

@@ -5,6 +5,8 @@ import './App.css';
 import TodoList from "./Todolist"
 import MapTest from "./MapTest"
 import Clock from "./Timer";
+import MyWeather from "./MyWeather";
+
 
 // function App() {
 //   const style ={
@@ -35,6 +37,7 @@ function App() {
       <TodoList></TodoList>
       <MapTest></MapTest>
       <Clock></Clock>
+      <MyWeather weather={"맑음"}>일기 예보</MyWeather>
     </div>
   )
 }

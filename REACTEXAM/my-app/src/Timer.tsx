@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 
 const Clock: React.FC = () => {
 	const [time, setTime]=useState(new Date())

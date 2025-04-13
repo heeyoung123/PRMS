@@ -13,7 +13,7 @@ export interface ILogItem{
 export interface IBoard{
 	boardId:string;
 	boardName:string;
-	lists:IList[]
+	lists:IList[];
 }
 export interface IList{
 	listId:string;

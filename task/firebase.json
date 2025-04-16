@@ -7,7 +7,7 @@
       "**/node_modules/**"
     ],
     "predeploy": [
-      "cd TASK && npm run build"
+      "npm run build"
     ],
     "rewrites": [
       {

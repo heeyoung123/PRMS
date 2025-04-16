@@ -19,3 +19,4 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_REACT_TASK_5A7C5 }}
           projectId: react-task-5a7c5
+          entryPoint: 'TASK'

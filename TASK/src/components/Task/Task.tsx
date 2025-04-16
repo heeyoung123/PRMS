@@ -11,7 +11,7 @@ type TTaskProps = {
 }
 
 const Task: FC<TTaskProps> = ({
-	                              index, id, boardId, taskName, taskDescription,
+	                              index, id, taskName, taskDescription,
                               }) => {
 	return (
 		<Draggable draggableId={id} index={index}>

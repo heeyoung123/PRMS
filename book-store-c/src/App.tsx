@@ -1,13 +1,13 @@
-import React, {useContext} from "react";
-import {Home} from "./pages/Home";
 import Layout from "./components/layout/Layout";
-import {GlobalStyle} from "./style/global";
-import {ThemeProvider} from "styled-components";
-import {getTheme} from "./style/theme";
+import {Home} from "./pages/Home";
+import Login from "./pages/Login";
+import {BookStoreThemeProvider} from "./context/themeContext";
 import ThemeSwitcher from "./components/header/ThemeSwitcher";
-import {BookStoreThemeProvider, ThemeContext} from "./context/themeContext";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Error from "./components/common/Error";
+import Signup from "./pages/Signup";
+import ResetPassword from "./pages/ResetPassword";
+import Books from "./pages/Books";
 
 const router = createBrowserRouter([
 	{
@@ -18,8 +18,40 @@ const router = createBrowserRouter([
 	{
 		path: "/books",
 		element: <Layout>
-			<div>도서 목록</div>
+			<Books/>
 		</Layout>,
+	},
+	{
+		path: "/register",
+		element: (
+			<Layout>
+				<Signup/>
+			</Layout>
+		),
+	},
+	{
+		path: "/reset",
+		element: (
+			<Layout>
+				<ResetPassword/>
+			</Layout>
+		),
+	},
+	{
+		path: "/login",
+		element: (
+			<Layout>
+				<Login/>
+			</Layout>
+		),
+	},
+	{
+		path: "/books",
+		element: (
+			<Layout>
+				<Books/>
+			</Layout>
+		),
 	},
 ]);
 

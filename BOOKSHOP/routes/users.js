@@ -10,7 +10,7 @@ router.post("/join", join);
 //로그인
 router.post("/login", login);
 //비밀번호 초기화 요청
-router.get("/reset", requestPasswordReset);
+router.post("/reset", requestPasswordReset);
 //비밀번호 초기화
 router.put("/reset", passwordReset);
 

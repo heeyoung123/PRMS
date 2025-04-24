@@ -6,29 +6,13 @@ import {useEffect, useState} from "react";
 import {Category} from "../../models/category.model";
 import {fetchCategory} from "../../api/category.api";
 import {useCategory} from "../../hooks/useCategory";
-
-// const CATEGORY = [
-// 	{
-// 		id: null,
-// 		name: "전체",
-// 	},
-// 	{
-// 		id: 0,
-// 		name: "동화",
-// 	},
-// 	{
-// 		id: 1,
-// 		name: "소설",
-// 	},
-// 	{
-// 		id: 2,
-// 		name: "사회",
-// 	},
-// ];
-
+import {useStore} from "zustand/react";
+import {useAuthStore} from "../../store/authStore";
+import Button from "./Button";
 
 function Header() {
 	const {category} = useCategory();
+	const {isLoggedIn, storeLogout} = useAuthStore();
 	return (
 		<HeaderStyle>
 			<h1 className="logo">
@@ -41,9 +25,9 @@ function Header() {
 				<ul>
 					{
 						category.map((item) => (
-							<li key={item.id}>
-								<Link to={item.id === null ? "/books" : `/books?category_id=${item.id}`}>
-									{item.name}
+							<li key={item.category_id}>
+								<Link to={item.category_id === null ? "/books" : `/books?category_id=${item.category_id}`}>
+									{item.category_name}
 								</Link>
 							</li>
 						))
@@ -51,7 +35,15 @@ function Header() {
 				</ul>
 			</nav>
 			<nav className="auth">
-				<ul>
+				{isLoggedIn ? (
+					<ul>
+						<li><Link to={"/cart"}>장바구니</Link></li>
+						<li><Link to={"/orderlist"}>주문 내역</Link></li>
+						<li>
+							<button onClick={storeLogout}>로그아웃</button>
+						</li>
+					</ul>
+				) : <ul>
 					<li>
 						<a href={"/login"}>
 							{FaSignInAlt({})} 로그인</a>
@@ -61,6 +53,8 @@ function Header() {
 					</li>
 
 				</ul>
+				}
+
 
 			</nav>
 		</HeaderStyle>
@@ -89,7 +83,7 @@ const HeaderStyle = styled.header`
             gap: 24px;
 
             li {
-                a {
+                a, button {
                     font-size: 1.2rem;
                     font-weight: 600;
                     text-decoration: none;
@@ -97,7 +91,9 @@ const HeaderStyle = styled.header`
                     display: flex;
                     align-items: center;
                     line-height: 1;
-
+                    background: none;
+                    border: 0;
+                    cursor: pointer;
 
                     svg {
                         margin-right: 6px;

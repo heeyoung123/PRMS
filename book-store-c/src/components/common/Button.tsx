@@ -10,8 +10,18 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 	isLoading?: boolean;
 }
 
-const Button = ({children, size, scheme, disabled, isLoading}: Props) => {
-	return <ButtonStyle size={size} scheme={scheme} disabled={disabled} isLoading={isLoading}>{children}</ButtonStyle>;
+const Button = ({children, size, scheme, disabled, isLoading, ...rest}: Props) => {
+	return (
+		<ButtonStyle
+			size={size}
+			scheme={scheme}
+			disabled={disabled}
+			isLoading={isLoading}
+			{...rest}
+		>
+			{children}
+		</ButtonStyle>
+	);
 };
 const ButtonStyle = styled.button<Omit<Props, "children">>`
     font-size: ${({theme, size}) => theme.button[size].fontSize};

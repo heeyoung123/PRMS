@@ -1,9 +1,16 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const dotenv = require("dotenv");
 dotenv.config();
 
 app.listen(process.env.PORT);
+
+
+app.use(cors({
+  origin: "http://localhost:3002",
+  credentials: true,
+}));
 
 const usersRouter = require("./routes/users");
 const booksRouter = require("./routes/books");
@@ -18,5 +25,3 @@ app.use("/carts", cartsRouter);
 app.use("/likes", likesRouter);
 app.use("/orders", ordersRouter);
 app.use("/category", categoryRouter);
-
-

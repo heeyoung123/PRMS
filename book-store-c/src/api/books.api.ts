@@ -1,5 +1,5 @@
 import {httpClient} from "./http";
-import {Book} from "../models/book.model";
+import {Book, BookDetail} from "../models/book.model";
 import {Pagination} from "../models/pagination.model";
 
 interface FetchBooksParams {
@@ -9,7 +9,7 @@ interface FetchBooksParams {
 	limit?: number;
 }
 
-interface FetchBooksResponse {
+export interface FetchBooksResponse {
 	books: Book[];
 	pagination: Pagination;
 }
@@ -21,7 +21,7 @@ export const fetchBooks = async (
 ): Promise<FetchBooksResponse> => {
 	try {
 		const response = await httpClient.get<FetchBooksResponse>("/books", {
-			params,
+			params: params,
 		});
 		return response.data;
 	} catch (error) {
@@ -33,4 +33,21 @@ export const fetchBooks = async (
 			},
 		};
 	}
+};
+export const fetchBook = async (book_id: string) => {
+	const response = await httpClient.get<BookDetail>(`/books/${book_id}`);
+	return response.data;
+};
+export const likeBook = async (book_id: number) => {
+	const response = await httpClient.post(`/likes/${book_id}`);
+	return response.data;
+};
+export const unlikeBook = async (book_id: number) => {
+	const response = await httpClient.delete(`/likes/${book_id}`);
+	return response.data;
+};
+
+export const fetchBestBooks = async () => {
+	const response = await httpClient.get<Book[]>("/books/best");
+	return response.data;
 };

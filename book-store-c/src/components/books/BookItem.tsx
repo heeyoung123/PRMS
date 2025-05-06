@@ -1,10 +1,11 @@
 import {styled} from "styled-components";
-import {Book} from "../../models/book.model";
-import {getImgSrc} from "../../utils/image";
-import {formatNumber} from "../../utils/format";
+import {Book} from "@/models/book.model";
+import {getImgSrc} from "@/utils/image";
+import {formatNumber} from "@/utils/format";
 import {FaHeart} from "react-icons/fa";
 import {JSX} from "react";
-import {ViewMode} from "./BookViewSwitcher";
+import {ViewMode} from "@/components/books/BookViewSwitcher";
+import {Link} from "react-router-dom";
 
 interface Props {
 	book: Book;
@@ -15,24 +16,27 @@ const BookItem = ({book, view}: Props) => {
 	return (
 		<>
 			<BookItemStyle view={view}>
-				<div className={"img"}>
-					<img src={getImgSrc(book.img)} alt={book.title}/>
-				</div>
-				<div className={"content"}>
-					<h2 className={"title"}>{book.title}</h2>
-					<p className={"summary"}>{book.summary}</p>
-					<p className={"author"}>{book.author}</p>
-					<p className={"price"}>{formatNumber(book.price)}원</p>
-					<div className={"likes"}>
-						{FaHeart({}) as JSX.Element}
-						<span>{book.likes}</span>
+				<Link to={`/books/${book.id}`}>
+					<div className={"img"}>
+						<img src={getImgSrc(book.img)} alt={book.title}/>
 					</div>
-				</div>
+					<div className={"content"}>
+						<h2 className={"title"}>{book.title}</h2>
+						<p className={"summary"}>{book.summary}</p>
+						<p className={"author"}>{book.author}</p>
+						<p className={"price"}>{formatNumber(book.price)}원</p>
+						<div className={"likes"}>
+							{FaHeart({}) as JSX.Element}
+							<span>{book.likes}</span>
+						</div>
+					</div>
+				</Link>
+
 			</BookItemStyle>
 		</>
 	);
 };
-const BookItemStyle = styled.div<Pick<Props, "view">>`
+export const BookItemStyle = styled.div<Pick<Props, "view">>`
     display: flex;
     flex-direction: ${({view}) => view === "grid" ? "column" : "row"};
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);

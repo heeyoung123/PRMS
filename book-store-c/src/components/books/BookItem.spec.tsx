@@ -7,7 +7,7 @@ const dummyBook: Book = {
 	id: 1,
 	title: "Dummy Book",
 	img: 5,
-	categoryId: 1,
+	category_id: 1,
 	form: "Dummy",
 	isbn: "Dummy",
 	summary: "Dummy",
